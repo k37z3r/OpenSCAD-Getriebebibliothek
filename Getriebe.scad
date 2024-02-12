@@ -286,7 +286,7 @@ module planetengetriebe(modul, zahnzahl_sonne, zahnzahl_planet, hoehe, randbreit
 
 	for(rot=[0:360/n_planeten:360/n_planeten*(n_planeten-1)]){
 		translate(kugel_zu_kart([achsabstand,90,rot]))
-			pfeilrad (modul, zahnzahl_planet, hoehe, 0.1, eingriffswinkel, schraegungswinkel);	// Planetenräder
+			pfeilrad (modul, zahnzahl_planet, hoehe, 0.5, eingriffswinkel, schraegungswinkel);	// Planetenräder
 		}
 	
 	pfeilhohlrad (modul, zahnzahl_hohlrad, hoehe, randbreite, eingriffswinkel, schraegungswinkel);	// Hohlrad
