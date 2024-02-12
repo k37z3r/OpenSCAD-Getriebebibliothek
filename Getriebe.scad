@@ -142,7 +142,9 @@ module stirnrad(modul, zahnzahl, hoehe, bohrung, eingriffswinkel = 20, schraegun
 						}
 					}
 				}
-				circle(r = bohrung/2);								// Bohrung
+                if (bohrung > 0){
+				    circle(r = bohrung/2);								// Bohrung
+                }
 			}
 		}
 	}
@@ -163,9 +165,8 @@ module pfeilrad(modul, zahnzahl, hoehe, bohrung, eingriffswinkel = 20, schraegun
 	translate([0,0,hoehe]){
 		union(){
 			stirnrad(modul, zahnzahl, hoehe, bohrung, eingriffswinkel, schraegungswinkel);		// untere Hälfte
-			mirror([0,0,1]){
+			translate([0,0,-0.01])mirror([0,0,1])
 				stirnrad(modul, zahnzahl, hoehe, bohrung, eingriffswinkel, schraegungswinkel);	// obere Hälfte
-			}
 		}
 	}
 }
@@ -285,7 +286,7 @@ module planetengetriebe(modul, zahnzahl_sonne, zahnzahl_planet, hoehe, randbreit
 
 	for(rot=[0:360/n_planeten:360/n_planeten*(n_planeten-1)]){
 		translate(kugel_zu_kart([achsabstand,90,rot]))
-			pfeilrad (modul, zahnzahl_planet, hoehe, bohrung, eingriffswinkel, schraegungswinkel);	// Planetenräder
+			pfeilrad (modul, zahnzahl_planet, hoehe, 0.1, eingriffswinkel, schraegungswinkel);	// Planetenräder
 		}
 	
 	pfeilhohlrad (modul, zahnzahl_hohlrad, hoehe, randbreite, eingriffswinkel, schraegungswinkel);	// Hohlrad
@@ -667,5 +668,4 @@ module schnecke(modul, laenge, bohrung, eingriffswinkel=20, steigungswinkel){
 
 // pfeilkegelradpaar(modul=1, zahnzahl_rad=30, zahnzahl_ritzel=11, achsenwinkel=100, zahnbreite=5, bohrung=4, eingriffswinkel = 20, schraegungswinkel=30, zusammen_gebaut=1);
 
-schnecke(modul=1, laenge=10, bohrung=4, eingriffswinkel=30, steigungswinkel=10);
-
+//schnecke(modul=1, laenge=10, bohrung=4, eingriffswinkel=30, steigungswinkel=10);
